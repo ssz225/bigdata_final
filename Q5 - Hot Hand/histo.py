@@ -24,7 +24,7 @@ l = plt.plot(bins, y, 'r--', linewidth=1)
 
 plt.xlabel('P(tip(t+1)>median) | tip(t)>median)')
 plt.ylabel('Scaled Frequency')
-plt.title(r'Are Good tips Followed by Good Tips?')
+plt.title(r'Are Good Tips Followed by Good Tips?')
 plt.axis([.1, .9,0,10])
 plt.grid(True)
 

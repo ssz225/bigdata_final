@@ -2,6 +2,11 @@ import glob
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.mlab as mlab
+from scipy.stats import multivariate_normal
+from mpl_toolkits.mplot3d import Axes3D
+from matplotlib import cm
+from matplotlib.ticker import LinearLocator, FormatStrFormatter
+
 
 in_files = glob.glob('output-2010/p*')
 
@@ -29,4 +34,5 @@ plt.grid(True)
 plt.xlabel('Minutes Worked/Day')
 plt.ylabel('Daily Revenue')
 plt.savefig('Minutes_v_Rev.png', dpi=400)
+plt.close()
 

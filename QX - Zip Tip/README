@@ -1,0 +1,7 @@
+We start off by creating the zip-tip data
+
+python zip_tip.py -r emr -c mrjob.conf s3://trip-fare-join/2010/ --file zip_grid.p --output-dir=outputs/ --no-output
+
+
+We then run the following for analysis
+

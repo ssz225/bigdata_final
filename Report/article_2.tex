@@ -1,0 +1,276 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Journal Article
+% LaTeX Template
+% Version 1.3 (9/9/13)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% Frits Wenneker (http://www.howtotex.com)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[twoside]{article}
+
+\usepackage{lipsum} % Package to generate dummy text throughout this template
+
+\usepackage[sc]{mathpazo} % Use the Palatino font
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\linespread{1.05} % Line spacing - Palatino needs more space between lines
+\usepackage{microtype} % Slightly tweak font spacing for aesthetics
+\usepackage{amsmath}
+
+\usepackage[hmarginratio=1:1,top=32mm,columnsep=20pt]{geometry} % Document margins
+\usepackage{multicol} % Used for the two-column layout of the document
+\usepackage[hang, small,labelfont=bf,up,textfont=it,up]{caption} % Custom captions under/above floats in tables or figures
+\usepackage{booktabs} % Horizontal rules in tables
+\usepackage{float} % Required for tables and figures in the multi-column environment - they need to be placed in specific locations with the [H] (e.g. \begin{table}[H])
+\usepackage{hyperref} % For hyperlinks in the PDF
+
+\usepackage{lettrine} % The lettrine is the first enlarged letter at the beginning of the text
+\usepackage{paralist} % Used for the compactitem environment which makes bullet points with less space between them
+\usepackage{graphicx}
+\usepackage{abstract} % Allows abstract customization
+\renewcommand{\abstractnamefont}{\normalfont\bfseries} % Set the "Abstract" text to bold
+\renewcommand{\abstracttextfont}{\normalfont\small\itshape} % Set the abstract itself to small italic text
+
+\usepackage{titlesec} % Allows customization of titles
+\renewcommand\thesection{\Roman{section}} % Roman numerals for the sections
+\renewcommand\thesubsection{\Roman{subsection}} % Roman numerals for subsections
+\titleformat{\section}[block]{\large\scshape\centering}{\thesection.}{1em}{} % Change the look of the section titles
+\titleformat{\subsection}[block]{}{\thesubsection.}{1em}{} % Change the look of the section titles
+
+\usepackage{fancyhdr} % Headers and footers
+\pagestyle{fancy} % All pages have headers and footers
+\fancyhead{} % Blank out the default header
+\fancyfoot{} % Blank out the default footer
+%\fancyhead[C]{Running title $\bullet$ November 2012 $\bullet$ Vol. XXI, No. 1} % Custom header text
+\fancyfoot[RO,LE]{\thepage} % Custom footer text
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\title{\vspace{-15mm}\fontsize{24pt}{10pt}\selectfont\textbf{Understanding Driver Behavior: Studies on NYC Taxi Data}} % Article title
+
+\author{
+\large
+\textsc{John Smith}\thanks{A thank you or further information}\\[2mm] % Your name
+\normalsize University of California \\ % Your institution
+\normalsize \href{mailto:john@smith.com}{john@smith.com} % Your email address
+\vspace{-5mm}
+}
+
+\author{
+\large
+\textsc{Daniel Abramson}\\[2mm] % Your name
+\normalsize New York University \\ % Your institution
+\normalsize \href{mailto:dna237@nyu.edu}{dna237@nyu.edu} % Your email address
+\vspace{-5mm}
+\and
+\textsc{Yoon Kim}\\[2mm] % Your name
+\normalsize New York University \\ % Your institution
+\normalsize \href{mailto:yhk255@nyu.edu}{yhk255@nyu.edu} % Your email address
+\vspace{-5mm}
+\and
+\textsc{Sylvia Zhao}\\[2mm] % Your name
+\normalsize New York University \\ % Your institution
+\normalsize \href{mailto:ssz8@cornell.edu}{ssz8@cornell.edu} % Your email address
+\vspace{-5mm}
+}
+\date{}
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+\maketitle % Insert title
+
+\thispagestyle{fancy} % All pages have headers and footers
+
+%----------------------------------------------------------------------------------------
+%	ABSTRACT
+%----------------------------------------------------------------------------------------
+
+\begin{abstract}
+
+\noindent Using all data on NYC taxi trips and fares from 2010 and 2013 we perform a series of studies to understand motivating factors behind driver behavior as well as outcomes from those incentives. In order to analyze this large dataset ($\approx$14GB), we employ a number of big data processing technologies that work on the Hadoop framework: Hive, Spark, and MapReduce programs.  We present our findings, issues encountered, and experimental setup. Of these findings, the most notable include: there are outlier drivers who are on average more productive per day, underperforming drivers generally do not improve (in relation to their peers), the sensitivity of fares to environment variables are seemingly invariant, drivers can expect better tips from cars with certain numbers of passengers, and previous tips affect driver behavior for the next immediate trip. 
+
+\end{abstract}
+
+%----------------------------------------------------------------------------------------
+%	ARTICLE CONTENTS
+%----------------------------------------------------------------------------------------
+
+\begin{multicols}{2} % Two-column layout throughout the main article text
+
+\section{Introduction}
+
+\lettrine[nindent=0em,lines=3]{D} river behavior presents itself as an interesting facet of the NYC taxi data to study through a number of different lenses. As a passenger, driver behavior affects the quality of the trip, cost of the trip, as well as availability of the taxi (in order to even take the trip in the first place). From the perspective from the taxi company, driver behavior affects revenues and profitability. As such, the taxi company may, through a better understanding of such behavior, change its incentive structure to encourage certain behaviors over others (now that it knows more about the current environment). 
+
+We ask a series of questions that are pertinent to both lenses. 
+\begin{enumerate}
+\item Are there productivity differences among drivers? Do some drivers consistently make more revenue per unit time worked than others? 
+\item Can we predict the sensitivities of taxi fares to a number of different environmental variables that would affect driver incentives to work? These include hours of the day, days of the week, and seasonal factors.
+\item Using this model, can we identify drivers performance differences? How do these relate to characteristic variables of the trip? Are tips sensitive to these outliers in performance/are passengers aware of these performance differences?
+\item Do these sensitivities of taxi fares to environmental variables change over time?
+\item Do previous earnings affect driver behavior? Is there some sort of 'hot-hand' with respect to tips? If a driver receives an above-median tip does this affect his behavior on the next ride? Is he motivated to continue good performance or does he care less? Is there no change in behavior?
+
+
+\end{enumerate}
+
+%------------------------------------------------
+
+\section{Preprocessing Taxi Data Inputs}
+
+All of the analyses above used the trips and fares data for NYC in 2010. Comparisons over time used the data for 2013 as well. This data is all publicly available. \cite{NYC_DATA}
+
+As a starting point for our analyses we joined these two datasets. In order to perform this inner join, we used MrJob, a python tool for using Hadoop-Streaming with a programming model that more closely follows Java.\cite{MRJOB}  For instance, instead of writing a reducer that iterates through each line to collect values for a given key, MrJob provides the reducer with a key and list of values. 
+
+We used AWS to perform this join, first transferring all input files to S3. We then used 4 m3.xlarge machines to perform the join. This took about 2 hours for each. There were 7 reducers. Mapper numbers were set to defaults. 
+
+%------------------------------------------------
+
+\section{Investigating Question 1: Driver Productivity Differences}
+
+\subsection{Experimental Setup}
+In answering this question, we performed a simple MapReduce analysis via MrJob. For each trip point, we had the mapper output the driver, date, revenue, and minutes worked. We then used a combiner to sum the last 2 quantities for a given driver-date pair.  Lastly, the producer output the daily average of the last 2 quantities for a given driver. Nonsense points where either fares were negative or there were more minutes than in a workday were removed. 
+
+The experimental setup of the hadoop environment is the same as that described in Section II. The runtime is similarly 2 hours. After running this job, aggregation of the results was performed locally via a single python script.
+
+\subsection{Results}
+\includegraphics[scale=.35]{Minutes_v_Rev.png}
+
+Though there is nothing surprising about a positive linear relationship between Daily Revenue and Minutes Worked per day, we find the outliers to be interesting. There seems to be a larger spread of outliers below the line than above. However, analyzing the outliers above the line, some seem to work very few minutes an contribute a lot to revenue. Perhaps these drivers are not properly incentivized. It would appear they have much downtime during the day. 
+
+\section{Investigating Question 2: Fare Sensitivities}
+
+\subsection{Experimental Setup}
+
+We leveraged Spark to perform this analysis. Specifically, we performed a number of regressions on the taxi data from 2010 and 2013 (as well as the combined dataset). We set up a regression model of the form:
+
+
+\begin{multline*}
+\text{Fare}[i] = \alpha + \\
+	\beta \cdot [\text{distance}[i], \{H[i]\}, \{D[i]\}, \{M[i]\},\{HD[i]\}] +\\
+	 \epsilon[i]
+\end{multline*}
+
+\noindent with an appropriate number of dummies for the hour of the day, day of the week, month, and hour-day interactions. We dropped nonsense points and outliers: fares less than 0, distances less than 0 or bigger than 100 miles. 
+
+We first made the non binary features standard normal. We then used Spark to fit this linear model. Spark forms the Mean-Squared-Error loss function and performs stochastic gradient descent updates over the inputs to adjust the weights to minimize the function. We utilized 4 m3.2xlarge machines to perform the analysis on AWS. This took about 40 hours (using 100 iterations for each fitting of the model). We then saved the predictions, actual values, and trip datapoint characteristics as a new dataset. 
+
+Additionally, we approximated the variance of $\hat{\beta}$. We found this to be an interesting problem as an exact result would require quadratic time, while an approximate one, like jackknifing would also be too computationally intensive (and of the same complexity though not assuming a functional form like homoskedasticity).  We devised an approximation by randomly sampling 300,000 points (call this $\tilde{X}$) without replacement from our dataset. We then approximated $Var(\hat{\beta})$ by $\text{MSE}*(\frac{N}{300000}\tilde{X}^T\tilde{X})^{-1}$. We used Spark for this sampling procedure to produce our homeskedastic standard errors. 
+\subsection{Results}
+
+The beta values are presented below in order of largest value to smallest value. A flag is included for significance.
+
+Below, we present them in order of most to least significant (in terms of the t-statistic). We include a flag for significance.
+
+Please see appendix for exact betas and standard errors.
+
+We see these as an interesting factor in driver behavior because...
+
+\section{Investigating Question 3: Driver Performance v Fare Sensitivities}
+YOOOOOON
+\subsection{Experimental Setup}
+\subsection{Results}
+
+\section{Investigating Question 4: Time v Fare Sensitivities}
+
+\subsection{Experimental Setup}
+In order to test time invariance we fit regressions on both the 2010 and 2013 joined taxi data (separately and together). Using Spark, we jointly test whether the regression coefficients are the same as well as perform a test per coefficient for equality. 
+
+The first analysis is conducted via a Chow Test.  The null hypothesis of the Chow Test is that $\beta_{2010} = \beta_{2013}$.  The Chow Statistic is formed by 
+
+$$\frac{(SSR_{comb} - (SSR_{2010} + SSR_{2013}))/k}{(SSR_{2010} + SSR_{2013})/(N_{2010} + N_{2013}-2k)}$$
+
+\noindent which is distributed $F(k, N_{2010} + N_{2013}-2k)$. \cite{CHOW}  
+
+We used Spark to calculate the Sum-of-Squared-Residual terms from the fitted models as well as the counts. This was included in the original regression code (so as to avoid loading the data twice). 
+
+Secondly, we performed a Z-Test on each individual coefficient. Here
+
+$$ Z_i = \frac{\hat{\beta}_{2010}[i] - \hat{\beta}_{2013}[i]}{\sqrt(SE(\hat{\beta}_{2010}[i]) + SE(\hat{\beta}_{2013}[i]))}.$$
+
+
+\subsection{Results}
+
+For the Chow statistic we find
+
+For the individual Z-tests we present the figure below in order of absolute value $Z_i$.
+
+Discussion
+
+
+\section{Investigating Question 5: Previous Earnings v Behavior}
+\subsection{Experimental Setup}
+For this analysis, we return to MrJob. Here our map task outputs $\text{[driver, (pickup day, tip percentage)]}$
+for every entry in our joined taxi data. We then implement a rather complicated reducer.  For every driver, the reducer computes the tip percentage median per day. This is used to control for possible trends in the data (we assume a day is small enough to not contain an economic trend). We then iterate through all of the tip percentages each day and count the number of times a tip above the daily median is followed by another vs one below the daily median. These are `above-above' vs `above-below'. By definition, half the tips must be above the median and half below. Hence, we find the frequency of `above-above' vs `above-below' to be a good test for a behavioral factor. For each driver we output the tip statistic,
+
+$$\frac{Count(`above-above')}{Count(`above-above') + Count(`above-below')}.$$
+
+We then aggregate these results and look at the distribution over drivers. The running time and experimental setup is nearly identical to our the MR jobs. 
+\subsection{Results}
+The resulting distribution is depicted below. 
+\includegraphics[scale=.35]{hothand.png}
+
+For various bin sizes, we find a similarly bimodal result. The red line represents the resulting normal distribution given our input data. Here, we see that the distribution is definitely not normal. However, behavior is on both ends of the spectrum. Moreover, we are unsure if it is exactly the behavior we thought we were measuring in the first place. We assumed that a good tip would improve driver moral and lead him to try harder on the next trip.  Then he would be more likely to get a larger tip.  Here we also see that for many drivers a good tip is more likely followed by a bad tip.  Either a good tip leads to laziness or we need more controls. Perhaps a time-of-day control could improve the experiment assuming that tipping trends change in morning vs afternoon vs night. This may be a reasonable assumption. We did not have sufficient funds to continue this analysis on AWS. 
+
+%------------------------------------------------
+
+\section{Concluding Remarks}
+
+
+%----------------------------------------------------------------------------------------
+%	REFERENCE LIST
+%----------------------------------------------------------------------------------------
+
+\begin{thebibliography}{99} % Bibliography - this is intentionally simple in this template
+
+\bibitem[Figueredo and Wolf, 2009]{Figueredo:2009dg}
+Figueredo, A.~J. and Wolf, P. S.~A. (2009).
+\newblock Assortative pairing and life history strategy - a cross-cultural
+  study.
+\newblock {\em Human Nature}, 20:317--330.
+ 
+\end{thebibliography}
+
+%----------------------------------------------------------------------------------------
+
+\section*{Appendices}
+
+\subsection{Running the Code}
+
+Our code is available at \\
+
+\noindent https://github.com/ssz225/bigdata\_final.\\
+
+
+
+Each component has a corresponding question folder with instructions as to how to run the code. We have excluded all of our AWS access information from the code and put in dummy values.  The joined input data is available at \\
+
+\noindent https://s3.amazonaws.com/trip-fare-join/2010/part-0000X
+\\
+\noindent https://s3.amazonaws.com/trip-fare-join/2013/part-0000X
+\\
+
+\noindent where X ranges from 0 to 6.
+
+
+\subsection{Individual Contributions}
+
+
+
+
+\end{multicols}
+
+\end{document}

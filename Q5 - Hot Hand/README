@@ -1,0 +1,11 @@
+Within this Directory run
+
+python mrjob_hot_hand.py -r emr -c mrjob.conf s3://trip-fare-join/2010/ --output-dir=q6-output/ --no-output
+
+We originally set the output to s3 and then used the AWS CLI to copy the files to our local output directory. This may be a marginally faster process than streaming it locally first.
+
+After creating the output files, run the histo.py script.
+
+python histo.py
+
+This should produce the histogram file. 

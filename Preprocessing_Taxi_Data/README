@@ -1,0 +1,9 @@
+Within the "TripFare Join" directory we run
+
+python mrjob_join.py -r emr -c mrjob.conf s3://taxis-data/ --output-dir=s3://trip-fare-join/2010 --no-output
+
+AND
+
+python mrjob_join.py -r emr -c mrjob.conf s3://taxis-data-2013/ --output-dir=s3://trip-fare-join/2013 --no-output
+
+One should change the output directory to one with write access.

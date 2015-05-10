@@ -1,0 +1,22 @@
+We first setup a Spark Cluster on AWS EMR.  We followed the directions at 
+
+https://aws.amazon.com/articles/Elastic-MapReduce/4926593393724923
+
+After ssh into the master node, we pasted spark_reg.py in a new file.
+
+We ran our script with
+
+MASTER=yarn-client /home/hadoop/spark/bin/pyspark spark_reg.py
+
+We then waited many hours to come back for the regression outputs from terminal.
+
+We saved these terminal outputs to a text file. These are what we used for Question 4 (printed to std out).
+
+We then analyze the outputs for 2010 with 
+
+python out_analysis.py
+
+to produce outputs for the remainder of Question 2.
+
+
+

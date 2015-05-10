@@ -1,0 +1,13 @@
+The input data for this question is output by the Q2&4 Spark Script on the 2010 data. This output is of the form
+
+Actual, Predicted, [Medal, Hack,Vendor, N Passengers, Tip]
+
+(8.1, 10.968444160135304, ['2010000001', '2010000001', 'VTS', '2', '2'])
+
+These reside in bucket (us-east)
+
+s3://regression-output/2010/
+
+We ran ...
+
+
