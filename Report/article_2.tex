@@ -120,10 +120,9 @@ We ask a series of questions that are pertinent to both lenses.
 \begin{enumerate}
 \item Are there productivity differences among drivers? Do some drivers consistently make more revenue per unit time worked than others? 
 \item Can we predict the sensitivities of taxi fares to a number of different environmental variables that would affect driver incentives to work? These include hours of the day, days of the week, and seasonal factors.
-\item Using this model, can we identify drivers performance differences? How do these relate to characteristic variables of the trip? Are tips sensitive to these outliers in performance/are passengers aware of these performance differences?
-\item Do these sensitivities of taxi fares to environmental variables change over time?
+\item Using this model, can we identify ``outlier" drivers whose actual fare exceeds the predicted fare (i.e. those that are overcharging)? How is tip behavior affected by such things?
 \item Do previous earnings affect driver behavior? Is there some sort of 'hot-hand' with respect to tips? If a driver receives an above-median tip does this affect his behavior on the next ride? Is he motivated to continue good performance or does he care less? Is there no change in behavior?
-
+\item How is tip affected by the income of the passengers, as measured by the median household income of the zip code in which the passenger is dropped off?
 
 \end{enumerate}
 
@@ -164,11 +163,11 @@ We leveraged Spark to perform this analysis. Specifically, we performed a number
 	 \epsilon[i]
 \end{multline*}
 
-\noindent with an appropriate number of dummies for the hour of the day, day of the week, month, and hour-day interactions. We dropped nonsense points and outliers: fares less than 0, distances less than 0 or bigger than 100 miles. 
+\noindent with an appropriate number of dummies for the hour of the day, day of the week, month, and hour-day interactions. 
 
 We first made the non binary features standard normal. We then used Spark to fit this linear model. Spark forms the Mean-Squared-Error loss function and performs stochastic gradient descent updates over the inputs to adjust the weights to minimize the function. We utilized 4 m3.2xlarge machines to perform the analysis on AWS. This took about 40 hours (using 100 iterations for each fitting of the model). We then saved the predictions, actual values, and trip datapoint characteristics as a new dataset. 
 
-Additionally, we approximated the variance of $\hat{\beta}$. We found this to be an interesting problem as an exact result would require quadratic time, while an approximate one, like jackknifing would also be too computationally intensive (and of the same complexity though not assuming a functional form like homoskedasticity).  We devised an approximation by randomly sampling 300,000 points (call this $\tilde{X}$) without replacement from our dataset. We then approximated $Var(\hat{\beta})$ by $\text{MSE}*(\frac{N}{300000}\tilde{X}^T\tilde{X})^{-1}$. We used Spark for this sampling procedure to produce our homeskedastic standard errors. 
+Additionally, we approximated the standard error of $\beta$. We found this to be an interesting problem as an exact result would require quadratic time, while an approximate one, like jackknifing would also be too computationally intensive (and of the same complexity though not assuming a functional form like homoskedasticity).  We devised an approximation by randomly sampling 300,000 points (call this $\tilde{X}$) without replacement from our dataset. We then approximated $Var(\beta)$ by $\text{MSE}*(\frac{N}{300000}\tilde{X}^T\tilde{X})^{-1}$. We used Spark for this sampling procedure to produce our homeskedastic standard errors. 
 \subsection{Results}
 
 The beta values are presented below in order of largest value to smallest value. A flag is included for significance.
@@ -180,41 +179,16 @@ Please see appendix for exact betas and standard errors.
 We see these as an interesting factor in driver behavior because...
 
 \section{Investigating Question 3: Driver Performance v Fare Sensitivities}
-YOOOOOON
-\subsection{Experimental Setup}
-\subsection{Results}
+Based on the regression output from the previous section, we plot the residual (i.e. actual fare minus predicted fare) for each trip and bin them into histograms.  
+\includegraphics[scale=.35]{figure_1.png}
+While much the error may be coming from the fact that our regression model is very simple (for example, it doesn't take into account the fact that a distance of 1 mile means very different things in midtown versus in suburbs of Queens), there does seem to be a cohort of trips in which the customer is overcharged. \\
+Next we investigate whether customers who are overcharged (i.e. have high residuals) give less tip. Below is a scatter plot of residuals (x-axis) versus tip percentage (y-axis). While the relationship is far from clear, there does seem to be a slight negative relationship between tip percentage and residual.
+\includegraphics[scale=.35]{figure_2.png}
 
-\section{Investigating Question 4: Time v Fare Sensitivities}
-
-\subsection{Experimental Setup}
-In order to test time invariance we fit regressions on both the 2010 and 2013 joined taxi data (separately and together). Using Spark, we jointly test whether the regression coefficients are the same as well as perform a test per coefficient for equality. 
-
-The first analysis is conducted via a Chow Test.  The null hypothesis of the Chow Test is that $\beta_{2010} = \beta_{2013}$.  The Chow Statistic is formed by 
-
-$$\frac{(SSR_{comb} - (SSR_{2010} + SSR_{2013}))/k}{(SSR_{2010} + SSR_{2013})/(N_{2010} + N_{2013}-2k)}$$
-
-\noindent which is distributed $F(k, N_{2010} + N_{2013}-2k)$. \cite{CHOW}  
-
-We used Spark to calculate the Sum-of-Squared-Residual terms from the fitted models as well as the counts. This was included in the original regression code (so as to avoid loading the data twice). 
-
-Secondly, we performed a Z-Test on each individual coefficient. Here
-
-$$ Z_i = \frac{\hat{\beta}_{2010}[i] - \hat{\beta}_{2013}[i]}{\sqrt(SE(\hat{\beta}_{2010}[i]) + SE(\hat{\beta}_{2013}[i]))}.$$
-
-
-\subsection{Results}
-
-For the Chow statistic we find
-
-For the individual Z-tests we present the figure below in order of absolute value $Z_i$.
-
-Discussion
-
-
-\section{Investigating Question 5: Previous Earnings v Behavior}
+\section{Investigating Question 4: Previous Earnings v Behavior}
 \subsection{Experimental Setup}
 For this analysis, we return to MrJob. Here our map task outputs $\text{[driver, (pickup day, tip percentage)]}$
-for every entry in our joined taxi data. We then implement a rather complicated reducer.  For every driver, the reducer computes the tip percentage median per day. This is used to control for possible trends in the data (we assume a day is small enough to not contain an economic trend). We then iterate through all of the tip percentages each day and count the number of times a tip above the daily median is followed by another vs one below the daily median. These are `above-above' vs `above-below'. By definition, half the tips must be above the median and half below. Hence, we find the frequency of `above-above' vs `above-below' to be a good test for a behavioral factor. For each driver we output the tip statistic,
+for every entry in our joined taxi data. We then implement a rather complicated reducer.  For every driver, the reducer computes the tip percentage median per day. This is used to control for possible trends in the data (we assume a day is small enough to not contain an economic trend). We then iterate through all of the tip percentages each day and count the number of times a tip above the daily median is followed by another vs one below the daily median. These are `above-above' vs `above-below'. By definition, half the tips must be above the median and half below. Hence, we find the frequency of `above-above' vs `above-below' to be a good test for a behavioral factor. For each driver we output the tip statistic
 
 $$\frac{Count(`above-above')}{Count(`above-above') + Count(`above-below')}.$$
 
@@ -225,6 +199,17 @@ The resulting distribution is depicted below.
 
 For various bin sizes, we find a similarly bimodal result. The red line represents the resulting normal distribution given our input data. Here, we see that the distribution is definitely not normal. However, behavior is on both ends of the spectrum. Moreover, we are unsure if it is exactly the behavior we thought we were measuring in the first place. We assumed that a good tip would improve driver moral and lead him to try harder on the next trip.  Then he would be more likely to get a larger tip.  Here we also see that for many drivers a good tip is more likely followed by a bad tip.  Either a good tip leads to laziness or we need more controls. Perhaps a time-of-day control could improve the experiment assuming that tipping trends change in morning vs afternoon vs night. This may be a reasonable assumption. We did not have sufficient funds to continue this analysis on AWS. 
 
+\section{Investigating Question 5: Average Tip Percentage vs Income}
+Next, we look at whether there is a relationship between passenger income and tip percentage. This involves several steps.
+\begin{itemize}
+\item We first create a grid of zip codes from querying latitude and longtitude for NY area based on Python's \texttt{geopy} package.
+\item Then we use the grid to match dropoff lat-long to zip code via MapReduce. Note that because the matrix is created already, zip code lookup on the grid take $O(1)$ time.
+\item We make the (crude) assumption that people who are getting dropped off are going home. We use the census data to match the zip code to median household income.
+\item We calculate the average tip percentage for that zip code to investigate the relationship between median household income for dropoff zip code and average tip percentage.
+\end{itemize}
+
+\includegraphics[scale=.4]{zip_income.png}
+As can be seen from the above chart, there seems to be a very small positive relationship between median household income and average tip percentage.
 %------------------------------------------------
 
 \section{Concluding Remarks}
@@ -246,7 +231,7 @@ Figueredo, A.~J. and Wolf, P. S.~A. (2009).
 
 %----------------------------------------------------------------------------------------
 
-\section*{Appendices}
+\section{Appendices}
 
 \subsection{Running the Code}
 
@@ -259,7 +244,6 @@ Our code is available at \\
 Each component has a corresponding question folder with instructions as to how to run the code. We have excluded all of our AWS access information from the code and put in dummy values.  The joined input data is available at \\
 
 \noindent https://s3.amazonaws.com/trip-fare-join/2010/part-0000X
-\\
 \noindent https://s3.amazonaws.com/trip-fare-join/2013/part-0000X
 \\
 
