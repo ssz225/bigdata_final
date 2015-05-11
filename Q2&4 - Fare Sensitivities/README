@@ -12,11 +12,7 @@ We then waited many hours to come back for the regression outputs from terminal.
 
 We saved these terminal outputs to a text file. These are what we used for Question 4 (printed to std out).
 
-We then analyze the outputs for 2010 with 
-
-python out_analysis.py
-
-to produce outputs for the remainder of Question 2.
+We then analyze the outputs, spark-output.txt for 2010 to produce outputs for the remainder of Question 2.
 
 
 
