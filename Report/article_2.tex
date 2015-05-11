@@ -102,7 +102,7 @@
 
 \begin{abstract}
 
-\noindent Using all data on NYC taxi trips and fares from 2010 and 2013 we perform a series of studies to understand motivating factors behind driver behavior as well as outcomes from those incentives. In order to analyze this large dataset ($\approx$14GB), we employ a number of big data processing technologies that work on the Hadoop framework: Hive, Spark, and MapReduce programs.  We present our findings, issues encountered, and experimental setup. Of these findings, the most notable include: there are outlier drivers who are on average more productive per day, underperforming drivers generally do not improve (in relation to their peers), the sensitivity of fares to environment variables are seemingly invariant, drivers can expect better tips from cars with certain numbers of passengers, and previous tips affect driver behavior for the next immediate trip. 
+\noindent Using all data on NYC taxi trips and fares from 2010 and 2013 we perform a series of studies to understand motivating factors behind driver behavior as well as outcomes from those incentives. In order to analyze this large dataset ($\approx$14GB), we employ a number of big data processing technologies that work on the Hadoop framework: Hive, Spark, and MapReduce programs.  We present our findings, issues encountered, and experimental setup. Of these findings, the most notable include: there are outlier drivers who are on average more productive per day, the sensitivity of fares to environment variables are seemingly invariant, the distribution of actual to predicted fares implies a number of overcharges that should be investigated, drivers can expect better tips from passenger drop-off to certain areas, and previous tips affect driver behavior for the next trip. 
 
 \end{abstract}
 
@@ -130,9 +130,9 @@ We ask a series of questions that are pertinent to both lenses.
 
 \section{Preprocessing Taxi Data Inputs}
 
-All of the analyses above used the trips and fares data for NYC in 2010. Comparisons over time used the data for 2013 as well. This data is all publicly available. \cite{NYC_DATA}
+All of the analyses above used the trips and fares data for NYC in 2010. Comparisons over time used the data for 2013 as well. This data is all publicly available. 
 
-As a starting point for our analyses we joined these two datasets. In order to perform this inner join, we used MrJob, a python tool for using Hadoop-Streaming with a programming model that more closely follows Java.\cite{MRJOB}  For instance, instead of writing a reducer that iterates through each line to collect values for a given key, MrJob provides the reducer with a key and list of values. 
+As a starting point for our analyses we joined these two datasets. In order to perform this inner join, we used MrJob, a python tool for using Hadoop-Streaming with a programming model that more closely follows Java. For instance, instead of writing a reducer that iterates through each line to collect values for a given key, MrJob provides the reducer with a key and list of values. 
 
 We used AWS to perform this join, first transferring all input files to S3. We then used 4 m3.xlarge machines to perform the join. This took about 2 hours for each. There were 7 reducers. Mapper numbers were set to defaults. 
 
@@ -167,16 +167,50 @@ We leveraged Spark to perform this analysis. Specifically, we performed a number
 
 We first made the non binary features standard normal. We then used Spark to fit this linear model. Spark forms the Mean-Squared-Error loss function and performs stochastic gradient descent updates over the inputs to adjust the weights to minimize the function. We utilized 4 m3.2xlarge machines to perform the analysis on AWS. This took about 40 hours (using 100 iterations for each fitting of the model). We then saved the predictions, actual values, and trip datapoint characteristics as a new dataset. 
 
-Additionally, we approximated the standard error of $\beta$. We found this to be an interesting problem as an exact result would require quadratic time, while an approximate one, like jackknifing would also be too computationally intensive (and of the same complexity though not assuming a functional form like homoskedasticity).  We devised an approximation by randomly sampling 300,000 points (call this $\tilde{X}$) without replacement from our dataset. We then approximated $Var(\beta)$ by $\text{MSE}*(\frac{N}{300000}\tilde{X}^T\tilde{X})^{-1}$. We used Spark for this sampling procedure to produce our homeskedastic standard errors. 
+Additionally, we approximated the variance of $\hat{\beta}$. We found this to be an interesting problem as an exact result would require quadratic time, while an approximate one, like jackknifing would also be too computationally intensive (and of the same complexity though not assuming a functional form like homoskedasticity).  We devised an approximation by randomly sampling 300,000 points (call this $\tilde{X}$) without replacement from our dataset. We then approximated $Var(\hat{\beta})$ by $\text{MSE}*(\frac{N}{300000}\tilde{X}^T\tilde{X})^{-1}$. We used Spark for this sampling procedure to produce our homoskedastic standard errors. 
+
+In order to test time invariance we fit regressions on both the 2010 and 2013 joined taxi data (separately and together). Using Spark, we jointly test whether the regression coefficients are the same as well as perform a test per coefficient for equality. 
+
+The first analysis is conducted via a Chow Test.  The null hypothesis of the Chow Test is that $\beta_{2010} = \beta_{2013}$.  The Chow Statistic is formed by 
+
+$$\frac{(SSR_{comb} - (SSR_{2010} + SSR_{2013}))/k}{(SSR_{2010} + SSR_{2013})/(N_{2010} + N_{2013}-2k)}$$
+
+\noindent which is distributed $F(k, N_{2010} + N_{2013}-2k)$. \cite{CHOW}  
+
+We used Spark to calculate the Sum-of-Squared-Residual terms from the fitted models as well as the counts. This was included in the original regression code (so as to avoid loading the data twice). 
+
+Secondly, we performed a Z-Test on each individual coefficient. Here
+
+$$ Z_i = \frac{\beta_{2010}[i] - \beta_{2013}[i]}{\sqrt(SE(\beta_{2010}[i]) + SE(\beta_{2013}[i]))}.$$
 \subsection{Results}
 
-The beta values are presented below in order of largest value to smallest value. A flag is included for significance.
+The top 10 most positive $\hat{\beta}$ values are presented in a table below. 
 
-Below, we present them in order of most to least significant (in terms of the t-statistic). We include a flag for significance.
+\begin{tabular}{ |l|l| }
+  \hline
+  \multicolumn{2}{|c|}{10 Largest Positive} \\
+  \hline
+Distance &	5.50 \\ Month\_8  &	0.27\\ hour\_15 &	0.16\\ hour\_4 &	0.15\\ hour\_14 &	0.15\\ hour\_5 &	0.14\\ hour\_0 &	0.14\\ Thur &	0.11\\ Month\_9 &	0.11\\ Sat\_hour\_23 & 	0.09\\
+  \hline
+\end{tabular}
 
-Please see appendix for exact betas and standard errors.
+The top 10 most negative $\hat{\beta}$ values are presented in a table below. \\
 
-We see these as an interesting factor in driver behavior because...
+\begin{tabular}{ |l|l| }
+  \hline
+  \multicolumn{2}{|c|}{10 Smallest Negative} \\
+  \hline
+ Month\_0 &	-0.34\\ hour\_7 &	-0.31\\ Month\_1 &	-0.23\\ hour\_6 & 	-0.21\\ Month\_6 &	-0.17\\ hour\_20 &	-0.16\\ hour\_19 &	-0.16\\ Mon &	-0.14\\ hour\_10 &	-0.13\\ Month\_3 &	-0.12\\
+  \hline
+\end{tabular}\\
+
+
+The dummies all had very high standard errors while distance was highly significant. We suspect that the dummy standard errors would be lower without our approximation.  Please see outputs for exact betas and standard errors.
+
+We find the above results interesting in terms of driver incentives. Those who work part-time should be partial to working time periods that align with high dummy values (these would lead to higher fares and tips for conceivably the same distances). They should avoid the low beta value periods. If the taxi company wants to smooth availability, assuming drivers already have some idea about these results, they should offer financial incentives by time period to even out the beta distribution. 
+
+The Chow Test yielded that we cannot reject the null hypothesis that the sensitivities are jointly equal for the 2 different years. However, the distance beta Z-value would lead us to reject the hypothesis of equality for the sensitivity for the two different years. The other Z-values are not significant. Hence, the results of the Z-test and Chow test seem consistent. 
+
 
 \section{Investigating Question 3: Driver Performance v Fare Sensitivities}
 Based on the regression output from the previous section, we plot the residual (i.e. actual fare minus predicted fare) for each trip and bin them into histograms.  
@@ -214,20 +248,11 @@ As can be seen from the above chart, there seems to be a very small positive rel
 
 \section{Concluding Remarks}
 
+We have outlined a number of factors that affect driver behavior. Moreover, we provide a guide on how to use modern big data tools for this type of analysis. Each question could be greatly expanded into more parts. We offer this report as a basic framework to aid in such a further investigation. 
 
-%----------------------------------------------------------------------------------------
-%	REFERENCE LIST
-%----------------------------------------------------------------------------------------
 
-\begin{thebibliography}{99} % Bibliography - this is intentionally simple in this template
 
-\bibitem[Figueredo and Wolf, 2009]{Figueredo:2009dg}
-Figueredo, A.~J. and Wolf, P. S.~A. (2009).
-\newblock Assortative pairing and life history strategy - a cross-cultural
-  study.
-\newblock {\em Human Nature}, 20:317--330.
- 
-\end{thebibliography}
+
 
 %----------------------------------------------------------------------------------------
 
@@ -239,20 +264,33 @@ Our code is available at \\
 
 \noindent https://github.com/ssz225/bigdata\_final.\\
 
+\noindent Each component has a corresponding question folder with instructions as to how to run the code. We have excluded all of our AWS access information from the code and put in dummy values.  The joined input data is available at \\
 
-
-Each component has a corresponding question folder with instructions as to how to run the code. We have excluded all of our AWS access information from the code and put in dummy values.  The joined input data is available at \\
-
-\noindent https://s3.amazonaws.com/trip-fare-join/2010/part-0000X
+\noindent https://s3.amazonaws.com/trip-fare-join/2010/part-0000X\\
 \noindent https://s3.amazonaws.com/trip-fare-join/2013/part-0000X
-\\
-
-\noindent where X ranges from 0 to 6.
-
+\\\\\
+where X ranges from 0 to 6.
 
 \subsection{Individual Contributions}
+\subsubsection*{Daniel}
+\begin{itemize}
+  \item Preprocessing Taxi Data Inputs
+  \item Question 1: Driver Productivity Differences
+  \item Question 2: Fare Sensitivities
+  \item Question 4: Previous Earnings v Behavior
+  \item Report - Writing
+  \item Code - Organization for Submission
+\end{itemize}
 
 
+\subsubsection*{Yoon}
+\begin{itemize}
+  \item Question 3: Driver Performance v Fare Sensitivities
+  \item Question 5: Average Tip Percentage vs Income
+  \item Presentation - Writing and Formatting
+  \item Report - Writing
+  \item Code - Organization for Submission
+\end{itemize}
 
 
 \end{multicols}

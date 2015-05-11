@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.10.18)  10 MAY 2015 21:09
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.10.18)  10 MAY 2015 23:04
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -607,17 +607,10 @@ LaTeX Font Info:    Font shape `T1/pplx/bx/n' in size <10> not available
 Package microtype Info: Character `029' is missing
 (microtype)             in font `T1/pplx/m/sc/10'.
 (microtype)             Ignoring protrusion settings for this character.
-
-
-LaTeX Warning: Citation `NYC_DATA' on page 1 undefined on input line 133.
-
-
-LaTeX Warning: Citation `MRJOB' on page 1 undefined on input line 135.
-
-[1
+ [1
 
 {/usr/local/texlive/2014/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-<Minutes_v_Rev.png, id=102, 578.16pt x 433.62pt>
+<Minutes_v_Rev.png, id=90, 578.16pt x 433.62pt>
 File: Minutes_v_Rev.png Graphic file (type png)
  <use Minutes_v_Rev.png>
 Package pdftex.def Info: Minutes_v_Rev.png used on input line 149.
@@ -635,59 +628,72 @@ T1/zplm/m/n/10 [\OML/zplm/m/it/10 i\OT1/zplm/m/n/10 ]\OMS/zplm/m/n/10 g\OT1/zpl
 m/m/n/10 ]+$ 
  []
 
-[2 <./Minutes_v_Rev.png>] <figure_1.png, id=111, 578.16pt x 431.4519pt>
+[2 <./Minutes_v_Rev.png>]
+
+LaTeX Warning: Citation `CHOW' on page 3 undefined on input line 178.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 206--207
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 208--224
+
+ []
+
+<figure_1.png, id=99, 578.16pt x 431.4519pt>
 File: figure_1.png Graphic file (type png)
-
-<use figure_1.png>
-Package pdftex.def Info: figure_1.png used on input line 183.
+ <use figure_1.png>
+Package pdftex.def Info: figure_1.png used on input line 235.
 (pdftex.def)             Requested size: 202.35902pt x 151.01042pt.
- <figure_2.png, id=112, 578.16pt x 431.4519pt>
+
+<figure_2.png, id=100, 578.16pt x 431.4519pt>
 File: figure_2.png Graphic file (type png)
-
-<use figure_2.png>
-Package pdftex.def Info: figure_2.png used on input line 186.
+ <use figure_2.png>
+Package pdftex.def Info: figure_2.png used on input line 238.
 (pdftex.def)             Requested size: 202.35902pt x 151.01042pt.
 
-Underfull \hbox (badness 5652) in paragraph at lines 182--187
+Underfull \hbox (badness 5652) in paragraph at lines 234--239
 \T1/pplx/m/n/10 (+20) pre-vi-ous sec-tion, we plot the resid-ual
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 182--187
+Underfull \hbox (badness 10000) in paragraph at lines 234--239
 []
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 190--192
+[3]
+Underfull \hbox (badness 10000) in paragraph at lines 242--244
 \T1/pplx/m/n/10 (+20) For this anal-y-sis, we re-turn to Mr-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 190--192
+Underfull \hbox (badness 10000) in paragraph at lines 242--244
 \T1/pplx/m/n/10 (+20) Job. Here our map task out-puts
  []
 
 
-Overfull \hbox (15.32487pt too wide) detected at line 193
+Overfull \hbox (15.32487pt too wide) detected at line 245
 []\OT1/pplx/m/n/10 .
  []
 
-[3 <./figure_1.png> <./figure_2.png>]
-<hothand.png, id=119, 578.16pt x 433.62pt>
+<hothand.png, id=106, 578.16pt x 433.62pt>
 File: hothand.png Graphic file (type png)
  <use hothand.png>
-Package pdftex.def Info: hothand.png used on input line 198.
+Package pdftex.def Info: hothand.png used on input line 250.
 (pdftex.def)             Requested size: 202.35902pt x 151.76927pt.
-LaTeX Font Info:    Try loading font information for OMS+pplx on input line 205
+ [4 <./figure_1.png> <./figure_2.png> <./hothand.png>]
+LaTeX Font Info:    Try loading font information for OMS+pplx on input line 257
 .
-LaTeX Font Info:    No file OMSpplx.fd. on input line 205.
+LaTeX Font Info:    No file OMSpplx.fd. on input line 257.
 
 
 LaTeX Font Warning: Font shape `OMS/pplx/m/n' undefined
 (Font)              using `OMS/cmsy/m/n' instead
-(Font)              for symbol `textbullet' on input line 205.
+(Font)              for symbol `textbullet' on input line 257.
 
-LaTeX Font Info:    Try loading font information for T1+cmtt on input line 205.
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 257.
 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 1999/05/25 v2.5h Standard LaTeX font definitions
@@ -697,104 +703,87 @@ Package microtype Info: Loading generic settings for font family
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 
-<zip_income.png, id=120, 536.75531pt x 328.22626pt>
+<zip_income.png, id=114, 536.75531pt x 328.22626pt>
 File: zip_income.png Graphic file (type png)
  <use zip_income.png>
-Package pdftex.def Info: zip_income.png used on input line 211.
+Package pdftex.def Info: zip_income.png used on input line 263.
 (pdftex.def)             Requested size: 214.6983pt x 131.28816pt.
 
-Overfull \hbox (24.696pt too wide) in paragraph at lines 211--214
+Overfull \hbox (24.696pt too wide) in paragraph at lines 263--266
 [][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 238--239
-
- []
-
-[4 <./hothand.png> <./zip_income.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 240--241
+Underfull \hbox (badness 10000) in paragraph at lines 281--282
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 244--245
+Underfull \hbox (badness 10000) in paragraph at lines 283--284
 
  []
 
 
-Overfull \hbox (27.1277pt too wide) in paragraph at lines 246--249
+Underfull \hbox (badness 10000) in paragraph at lines 285--286
+
+ []
+
+
+Overfull \hbox (27.1277pt too wide) in paragraph at lines 287--291
 \T1/pplx/m/n/10 (-20) https://s3.amazonaws.com/trip-fare-join/2010/part-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 246--249
+Overfull \hbox (27.1277pt too wide) in paragraph at lines 287--291
+\T1/pplx/m/n/10 (-20) https://s3.amazonaws.com/trip-fare-join/2013/part-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 287--291
 
  []
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 260.
-[5]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 260.
+[5 <./zip_income.png>]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 316.
+ [6]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 316.
  (./article_2.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 260.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 260.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 316.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 316.
+Package rerunfilecheck Info: File `article_2.out' has not changed.
+(rerunfilecheck)             Checksum: CD9E706491AC99F7BCCB3FA5B90D023C;1178.
 
-
-Package rerunfilecheck Warning: File `article_2.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `article_2.out':
-(rerunfilecheck)             Before: B32AAD5BF79C6110D5D47970A19FB915;1375
-(rerunfilecheck)             After:  CD9E706491AC99F7BCCB3FA5B90D023C;1178.
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 
 LaTeX Warning: There were undefined references.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 260.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 316.
  ) 
 Here is how much of TeX's memory you used:
- 10301 strings out of 493109
- 155921 string characters out of 6135003
- 375421 words of memory out of 5000000
- 13327 multiletter control sequences out of 15000+600000
- 70872 words of font info for 258 fonts, out of 8000000 for 9000
+ 10287 strings out of 493109
+ 155715 string characters out of 6135003
+ 378421 words of memory out of 5000000
+ 13324 multiletter control sequences out of 15000+600000
+ 70229 words of font info for 257 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 36i,11n,43p,928b,588s stack positions out of 5000i,500n,10000p,200000b,80000s
-pdfTeX warning (dest): name{subsection.8.2} has been referenced but does not 
-exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{subsection.8.1} has been referenced but does not ex
-ist, replaced by a fixed one
-
-pdfTeX warning (dest): name{subsection.7.2} has been referenced but does not ex
-ist, replaced by a fixed one
-
-pdfTeX warning (dest): name{subsection.7.1} has been referenced but does not ex
-ist, replaced by a fixed one
-
-pdfTeX warning (dest): name{subsection.5.2} has been referenced but does not ex
-ist, replaced by a fixed one
-
-pdfTeX warning (dest): name{subsection.5.1} has been referenced but does not ex
-ist, replaced by a fixed one
-
-{/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/
-usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texli
-ve/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive
-/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/
-2014/texmf-dist/fonts/type1/public/mathpazo/fplmri.pfb></usr/local/texlive/2014
-/texmf-dist/fonts/type1/public/fpl/fplrc8a.pfb></usr/local/texlive/2014/texmf-d
-ist/fonts/type1/public/cm-super/sftt1000.pfb></usr/local/texlive/2014/texmf-dis
-t/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2014/texmf-dist/fonts
-/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/
-urw/palatino/uplri8a.pfb>
-Output written on article_2.pdf (5 pages, 1130392 bytes).
+ 36i,10n,43p,942b,659s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}
+{/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/tex
+live/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texl
+ive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texliv
+e/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive
+/2014/texmf-dist/fonts/type1/public/mathpazo/fplmri.pfb></usr/local/texlive/201
+4/texmf-dist/fonts/type1/public/fpl/fplrc8a.pfb></usr/local/texlive/2014/texmf-
+dist/fonts/type1/public/cm-super/sftt1000.pfb></usr/local/texlive/2014/texmf-di
+st/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2014/texmf-dist/font
+s/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1
+/urw/palatino/uplri8a.pfb>
+Output written on article_2.pdf (6 pages, 1141930 bytes).
 PDF statistics:
- 173 PDF objects out of 1000 (max. 8388607)
- 147 compressed objects within 2 object streams
- 35 named destinations out of 1000 (max. 500000)
- 53434 words of extra memory for PDF output out of 61914 (max. 10000000)
+ 164 PDF objects out of 1000 (max. 8388607)
+ 136 compressed objects within 2 object streams
+ 29 named destinations out of 1000 (max. 500000)
+ 47266 words of extra memory for PDF output out of 51595 (max. 10000000)
 
