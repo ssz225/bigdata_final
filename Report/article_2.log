@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.10.18)  11 MAY 2015 09:14
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  11 MAY 2015 15:00
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -6,7 +6,7 @@ entering extended mode
 **article_2.tex
 (./article_2.tex
 LaTeX2e <2014/05/01>
-Babel <3.9l> and hyphenation patterns for 79 languages loaded.
+Babel <3.9k> and hyphenation patterns for 78 languages loaded.
 (/usr/local/texlive/2014/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
 (/usr/local/texlive/2014/texmf-dist/tex/latex/base/size10.clo
@@ -25,7 +25,7 @@ File: size10.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
 \bibindent=\dimen102
 )
 (/usr/local/texlive/2014/texmf-dist/tex/latex/lipsum/lipsum.sty
-Package: lipsum 2014/07/27 v1.3 150 paragraphs of Lorem Ipsum dummy text
+Package: lipsum 2011/04/14 v1.2 150 paragraphs of Lorem Ipsum dummy text
 \c@lips@count=\count87
 )
 (/usr/local/texlive/2014/texmf-dist/tex/latex/psnfss/mathpazo.sty
@@ -151,7 +151,7 @@ Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 \Gm@dimlist=\toks21
 )
 (/usr/local/texlive/2014/texmf-dist/tex/latex/tools/multicol.sty
-Package: multicol 2014/08/24 v1.8g multicolumn formatting (FMi)
+Package: multicol 2014/04/23 v1.8e multicolumn formatting (FMi)
 \c@tracingmulticols=\count105
 \mult@box=\box28
 \multicol@leftmargin=\dimen121
@@ -354,16 +354,14 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 \Hy@SectionHShift=\skip49
 )
 (/usr/local/texlive/2014/texmf-dist/tex/latex/lettrine/lettrine.sty
-File: lettrine.sty 2014/09/16 v1.70 (Daniel Flipo)
+File: lettrine.sty 2013/03/14 v1.64 (Daniel Flipo)
 \c@DefaultLines=\count130
-\c@DefaultDepth=\count131
 \DefaultFindent=\dimen154
 \DefaultNindent=\dimen155
 \DefaultSlope=\dimen156
 \L@lbox=\box56
 \L@tbox=\box57
-\c@L@lines=\count132
-\c@L@depth=\count133
+\c@L@lines=\count131
 \L@Pindent=\dimen157
 \L@Findent=\dimen158
 \L@Nindent=\dimen159
@@ -373,8 +371,6 @@ File: lettrine.sty 2014/09/16 v1.70 (Daniel Flipo)
 \L@slope=\dimen163
 \L@height=\dimen164
 \LettrineWidth=\dimen165
-\LettrineHeight=\dimen166
-\LettrineDepth=\dimen167
 
 Loading lettrine.cfg
 (/usr/local/texlive/2014/texmf-dist/tex/latex/lettrine/lettrine.cfg))
@@ -402,10 +398,10 @@ Package graphics Info: Driver file: pdftex.def on input line 91.
 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/pdftex-def/pdftex.def
 File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
-\Gread@gobject=\count134
+\Gread@gobject=\count132
 ))
-\Gin@req@height=\dimen168
-\Gin@req@width=\dimen169
+\Gin@req@height=\dimen166
+\Gin@req@width=\dimen167
 )
 (/usr/local/texlive/2014/texmf-dist/tex/latex/abstract/abstract.sty
 Package: abstract 2009/06/08 v1.2a configurable abstracts
@@ -420,12 +416,12 @@ Package: titlesec 2011/12/15 v2.10.0 Sectioning titles
 \ttl@box=\box58
 \beforetitleunit=\skip59
 \aftertitleunit=\skip60
-\ttl@plus=\dimen170
-\ttl@minus=\dimen171
+\ttl@plus=\dimen168
+\ttl@minus=\dimen169
 \ttl@toksa=\toks25
-\titlewidth=\dimen172
-\titlewidthlast=\dimen173
-\titlewidthfirst=\dimen174
+\titlewidth=\dimen170
+\titlewidthlast=\dimen171
+\titlewidthfirst=\dimen172
 )
 (/usr/local/texlive/2014/texmf-dist/tex/latex/titlesec/block.tss
 File: block.tss 2011/12/15
@@ -524,7 +520,7 @@ Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 (/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
-\c@section@level=\count135
+\c@section@level=\count133
 )
 LaTeX Info: Redefining \ref on input line 93.
 LaTeX Info: Redefining \pageref on input line 93.
@@ -537,16 +533,16 @@ LaTeX Info: Redefining \nameref on input line 93.
 
 (/usr/local/texlive/2014/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count136
-\scratchdimen=\dimen175
+\scratchcounter=\count134
+\scratchdimen=\dimen173
 \scratchbox=\box60
-\nofMPsegments=\count137
-\nofMParguments=\count138
+\nofMPsegments=\count135
+\nofMParguments=\count136
 \everyMPshowfont=\toks26
-\MPscratchCnt=\count139
-\MPscratchDim=\dimen176
-\MPnumerator=\count140
-\makeMPintoPDFobject=\count141
+\MPscratchCnt=\count137
+\MPscratchDim=\dimen174
+\MPnumerator=\count138
+\makeMPintoPDFobject=\count139
 \everyMPtoPDFconversion=\toks27
 ) (/usr/local/texlive/2014/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
@@ -603,20 +599,20 @@ Package microtype Info: Character `029' is missing
 (microtype)             in font `T1/pplx/m/sc/12'.
 (microtype)             Ignoring protrusion settings for this character.
 LaTeX Font Info:    Font shape `T1/pplx/bx/n' in size <10> not available
-(Font)              Font shape `T1/pplx/b/n' tried instead on input line 103.
+(Font)              Font shape `T1/pplx/b/n' tried instead on input line 102.
 Package microtype Info: Character `029' is missing
 (microtype)             in font `T1/pplx/m/sc/10'.
 (microtype)             Ignoring protrusion settings for this character.
  [1
 
 {/usr/local/texlive/2014/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-<Minutes_v_Rev.png, id=90, 578.16pt x 433.62pt>
+<Minutes_v_Rev.png, id=103, 578.16pt x 433.62pt>
 File: Minutes_v_Rev.png Graphic file (type png)
  <use Minutes_v_Rev.png>
-Package pdftex.def Info: Minutes_v_Rev.png used on input line 149.
+Package pdftex.def Info: Minutes_v_Rev.png used on input line 147.
 (pdftex.def)             Requested size: 202.35902pt x 151.76927pt.
 
-Overfull \hbox (9.14029pt too wide) detected at line 164
+Overfull \hbox (9.14029pt too wide) detected at line 160
  []$[]\OML/zplm/m/it/10 ^^L \OMS/zplm/m/n/10 ^^A \OT1/zplm/m/n/10 [[][\OML/zplm
 /m/it/10 i\OT1/zplm/m/n/10 ]\OT1/pplx/m/n/10 , \OMS/zplm/m/n/10 f\OML/zplm/m/it
 /10 H\OT1/zplm/m/n/10 [\OML/zplm/m/it/10 i\OT1/zplm/m/n/10 ]\OMS/zplm/m/n/10 g\
@@ -629,67 +625,67 @@ m/m/n/10 ]+$
  []
 
 [2 <./Minutes_v_Rev.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 206--207
+Underfull \hbox (badness 10000) in paragraph at lines 202--203
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 208--224
+Underfull \hbox (badness 10000) in paragraph at lines 204--220
 
  []
 
-<figure_1.png, id=99, 578.16pt x 431.4519pt>
+<figure_1.png, id=112, 578.16pt x 431.4519pt>
 File: figure_1.png Graphic file (type png)
  <use figure_1.png>
-Package pdftex.def Info: figure_1.png used on input line 235.
-(pdftex.def)             Requested size: 202.35902pt x 151.01042pt.
+Package pdftex.def Info: figure_1.png used on input line 231.
+(pdftex.def)             Requested size: 196.5718pt x 146.6917pt.
 
-<figure_2.png, id=100, 578.16pt x 431.4519pt>
+<figure_2.png, id=113, 578.16pt x 431.4519pt>
 File: figure_2.png Graphic file (type png)
  <use figure_2.png>
-Package pdftex.def Info: figure_2.png used on input line 238.
-(pdftex.def)             Requested size: 202.35902pt x 151.01042pt.
+Package pdftex.def Info: figure_2.png used on input line 234.
+(pdftex.def)             Requested size: 199.46541pt x 148.85106pt.
 
-Underfull \hbox (badness 5652) in paragraph at lines 234--239
+Underfull \hbox (badness 5652) in paragraph at lines 230--235
 \T1/pplx/m/n/10 (+20) pre-vi-ous sec-tion, we plot the resid-ual
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 234--239
+Underfull \hbox (badness 10000) in paragraph at lines 230--235
 []
  []
 
 [3]
-Underfull \hbox (badness 10000) in paragraph at lines 242--244
+Underfull \hbox (badness 10000) in paragraph at lines 238--240
 \T1/pplx/m/n/10 (+20) For this anal-y-sis, we re-turn to Mr-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 242--244
+Underfull \hbox (badness 10000) in paragraph at lines 238--240
 \T1/pplx/m/n/10 (+20) Job. Here our map task out-puts
  []
 
 
-Overfull \hbox (15.32487pt too wide) detected at line 245
+Overfull \hbox (15.32487pt too wide) detected at line 241
 []\OT1/pplx/m/n/10 .
  []
 
-<hothand.png, id=106, 578.16pt x 433.62pt>
+<hothand.png, id=119, 578.16pt x 433.62pt>
 File: hothand.png Graphic file (type png)
  <use hothand.png>
-Package pdftex.def Info: hothand.png used on input line 250.
+Package pdftex.def Info: hothand.png used on input line 246.
 (pdftex.def)             Requested size: 202.35902pt x 151.76927pt.
  [4 <./figure_1.png> <./figure_2.png> <./hothand.png>]
-LaTeX Font Info:    Try loading font information for OMS+pplx on input line 257
+LaTeX Font Info:    Try loading font information for OMS+pplx on input line 253
 .
-LaTeX Font Info:    No file OMSpplx.fd. on input line 257.
+LaTeX Font Info:    No file OMSpplx.fd. on input line 253.
 
 
 LaTeX Font Warning: Font shape `OMS/pplx/m/n' undefined
 (Font)              using `OMS/cmsy/m/n' instead
-(Font)              for symbol `textbullet' on input line 257.
+(Font)              for symbol `textbullet' on input line 253.
 
-LaTeX Font Info:    Try loading font information for T1+cmtt on input line 257.
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 253.
 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 1999/05/25 v2.5h Standard LaTeX font definitions
@@ -699,69 +695,114 @@ Package microtype Info: Loading generic settings for font family
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 
-<zip_income.png, id=114, 536.75531pt x 328.22626pt>
+<zip_income.png, id=127, 536.75531pt x 328.22626pt>
 File: zip_income.png Graphic file (type png)
  <use zip_income.png>
-Package pdftex.def Info: zip_income.png used on input line 263.
-(pdftex.def)             Requested size: 214.6983pt x 131.28816pt.
+Package pdftex.def Info: zip_income.png used on input line 259.
+(pdftex.def)             Requested size: 187.86716pt x 114.8809pt.
 
-Overfull \hbox (24.696pt too wide) in paragraph at lines 263--266
+Underfull \hbox (badness 10000) in paragraph at lines 259--262
 [][]
  []
 
+<pct_pc0_pcno0.pdf, id=128, 578.16pt x 433.62pt>
+File: pct_pc0_pcno0.pdf Graphic file (type pdf)
+ <use pct_pc0_pcno0.pdf>
+Package pdftex.def Info: pct_pc0_pcno0.pdf used on input line 269.
+(pdftex.def)             Requested size: 202.35902pt x 151.76927pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 281--282
+[5 <./zip_income.png> <./pct_pc0_pcno0.pdf>]
+<tip_passenger.pdf, id=179, 578.16pt x 433.62pt>
+File: tip_passenger.pdf Graphic file (type pdf)
+ <use tip_passenger.pdf>
+Package pdftex.def Info: tip_passenger.pdf used on input line 274.
+(pdftex.def)             Requested size: 202.35902pt x 151.76927pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 273--277
+[]
+ []
+
+<total_tip.pdf, id=180, 578.16pt x 433.62pt>
+File: total_tip.pdf Graphic file (type pdf)
+ <use total_tip.pdf>
+Package pdftex.def Info: total_tip.pdf used on input line 279.
+(pdftex.def)             Requested size: 185.01497pt x 138.76123pt.
+
+<total_taxis.pdf, id=181, 578.16pt x 433.62pt>
+File: total_taxis.pdf Graphic file (type pdf)
+ <use total_taxis.pdf>
+Package pdftex.def Info: total_taxis.pdf used on input line 280.
+(pdftex.def)             Requested size: 185.01497pt x 138.76123pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 278--282
+[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 278--282
+[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 298--299
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 283--284
+Underfull \hbox (badness 10000) in paragraph at lines 300--301
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 285--286
+Underfull \hbox (badness 10000) in paragraph at lines 302--303
 
  []
 
+[6 <./tip_passenger.pdf> <./total_tip.pdf
 
-Overfull \hbox (27.1277pt too wide) in paragraph at lines 287--291
+pdfTeX warning: /usr/texbin/pdflatex (file ./total_tip.pdf): PDF inclusion: mul
+tiple pdfs with page group included in a single page
+> <./total_taxis.pdf
+
+pdfTeX warning: /usr/texbin/pdflatex (file ./total_taxis.pdf): PDF inclusion: m
+ultiple pdfs with page group included in a single page
+>]
+Overfull \hbox (27.1277pt too wide) in paragraph at lines 304--308
 \T1/pplx/m/n/10 (-20) https://s3.amazonaws.com/trip-fare-join/2010/part-
  []
 
 
-Overfull \hbox (27.1277pt too wide) in paragraph at lines 287--291
+Overfull \hbox (27.1277pt too wide) in paragraph at lines 304--308
 \T1/pplx/m/n/10 (-20) https://s3.amazonaws.com/trip-fare-join/2013/part-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 287--291
+Underfull \hbox (badness 10000) in paragraph at lines 304--308
 
  []
 
-[5 <./zip_income.png>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 316.
- [6]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 316.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 340.
+[7]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 340.
  (./article_2.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 316.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 316.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 340.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 340.
 Package rerunfilecheck Info: File `article_2.out' has not changed.
-(rerunfilecheck)             Checksum: CD9E706491AC99F7BCCB3FA5B90D023C;1178.
+(rerunfilecheck)             Checksum: 748885089C88D811F9A6AF193F090E4D;1417.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 316.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 340.
  ) 
 Here is how much of TeX's memory you used:
- 10281 strings out of 493109
- 155652 string characters out of 6135003
- 378360 words of memory out of 5000000
- 13322 multiletter control sequences out of 15000+600000
- 70019 words of font info for 254 fonts, out of 8000000 for 9000
+ 10273 strings out of 493117
+ 155721 string characters out of 6135433
+ 368911 words of memory out of 5000000
+ 13315 multiletter control sequences out of 15000+600000
+ 69376 words of font info for 245 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 36i,10n,43p,935b,658s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 36i,10n,43p,1004b,585s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}
 {/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/tex
 live/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texl
@@ -773,10 +814,10 @@ dist/fonts/type1/public/cm-super/sftt1000.pfb></usr/local/texlive/2014/texmf-di
 st/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2014/texmf-dist/font
 s/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1
 /urw/palatino/uplri8a.pfb>
-Output written on article_2.pdf (6 pages, 1140677 bytes).
+Output written on article_2.pdf (7 pages, 1188276 bytes).
 PDF statistics:
- 164 PDF objects out of 1000 (max. 8388607)
- 136 compressed objects within 2 object streams
- 29 named destinations out of 1000 (max. 500000)
- 47266 words of extra memory for PDF output out of 51595 (max. 10000000)
+ 349 PDF objects out of 1000 (max. 8388607)
+ 177 compressed objects within 2 object streams
+ 34 named destinations out of 1000 (max. 500000)
+ 47310 words of extra memory for PDF output out of 51595 (max. 10000000)
 
