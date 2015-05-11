@@ -175,7 +175,7 @@ The first analysis is conducted via a Chow Test.  The null hypothesis of the Cho
 
 $$\frac{(SSR_{comb} - (SSR_{2010} + SSR_{2013}))/k}{(SSR_{2010} + SSR_{2013})/(N_{2010} + N_{2013}-2k)}$$
 
-\noindent which is distributed $F(k, N_{2010} + N_{2013}-2k)$. \cite{CHOW}  
+\noindent which is distributed $F(k, N_{2010} + N_{2013}-2k)$. 
 
 We used Spark to calculate the Sum-of-Squared-Residual terms from the fitted models as well as the counts. This was included in the original regression code (so as to avoid loading the data twice). 
 
@@ -190,7 +190,16 @@ The top 10 most positive $\hat{\beta}$ values are presented in a table below.
   \hline
   \multicolumn{2}{|c|}{10 Largest Positive} \\
   \hline
-Distance &	5.50 \\ Month\_8  &	0.27\\ hour\_15 &	0.16\\ hour\_4 &	0.15\\ hour\_14 &	0.15\\ hour\_5 &	0.14\\ hour\_0 &	0.14\\ Thur &	0.11\\ Month\_9 &	0.11\\ Sat\_hour\_23 & 	0.09\\
+Distance &	5.50 \\
+ Month\_8  &	0.27\\
+ hour\_15 &	0.16\\
+ hour\_4 &	0.15\\
+ hour\_14 &	0.15\\
+ hour\_5 &	0.14\\
+ hour\_0 &	0.14\\
+ Thur &	0.11\\
+ Month\_9 &	0.11\\
+ Sat\_hour\_23 & 	0.09\\
   \hline
 \end{tabular}
 
@@ -200,7 +209,16 @@ The top 10 most negative $\hat{\beta}$ values are presented in a table below. \\
   \hline
   \multicolumn{2}{|c|}{10 Smallest Negative} \\
   \hline
- Month\_0 &	-0.34\\ hour\_7 &	-0.31\\ Month\_1 &	-0.23\\ hour\_6 & 	-0.21\\ Month\_6 &	-0.17\\ hour\_20 &	-0.16\\ hour\_19 &	-0.16\\ Mon &	-0.14\\ hour\_10 &	-0.13\\ Month\_3 &	-0.12\\
+ Month\_0 &	-0.34\\
+ hour\_7 &	-0.31\\
+ Month\_1 &	-0.23\\
+ hour\_6 & 	-0.21\\
+ Month\_6 &	-0.17\\
+ hour\_20 &	-0.16\\
+ hour\_19 &	-0.16\\
+ Mon &	-0.14\\
+ hour\_10 &	-0.13\\
+ Month\_3 &	-0.12\\
   \hline
 \end{tabular}\\
 
