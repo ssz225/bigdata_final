@@ -10,9 +10,21 @@ MASTER=yarn-client /home/hadoop/spark/bin/pyspark spark_reg.py
 
 We then waited many hours to come back for the regression outputs from terminal.
 
-We saved these terminal outputs to a text file. These are what we used for Question 4 (printed to std out).
+We saved these terminal outputs to a text file. These are what we used for Question 3 (printed to std out).
 
 We then analyze the outputs, spark-output.txt for 2010 to produce outputs for the remainder of Question 2.
+
+The input data for Q3 is 2010 data. This output is of the form
+
+Actual, Predicted, [Medal, Hack,Vendor, N Passengers, Tip]
+
+(8.1, 10.968444160135304, ['2010000001', '2010000001', 'VTS', '2', '2'])
+
+These reside in bucket (us-east)
+
+s3://regression-output/2010/
+
+
 
 
 
